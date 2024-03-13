@@ -1,9 +1,8 @@
 import { rootReducer } from './todo/reducers'
-import { Store, applyMiddleware, createStore } from 'redux'
+import { configureStore } from '@reduxjs/toolkit'
 import { PersistConfig, persistReducer, persistStore } from 'redux-persist'
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
 import storage from 'redux-persist/lib/storage'
-import thunk from 'redux-thunk'
 
 const reduxPersistConfig: PersistConfig<any> = {
 	key: 'application',
@@ -11,8 +10,14 @@ const reduxPersistConfig: PersistConfig<any> = {
 	stateReconciler: autoMergeLevel2,
 }
 
-const pReducer = persistReducer(reduxPersistConfig, rootReducer)
+const pReducer = persistReducer(reduxPersistConfig, rootReducer as any)
 
-export const store: Store = createStore(pReducer, applyMiddleware(thunk))
+export const store = configureStore({
+	reducer: pReducer,
+	middleware: (getDefaultMiddleware) =>
+		getDefaultMiddleware({
+			serializableCheck: false,
+		}),
+})
 
 export const persistor = persistStore(store)
