@@ -1,5 +1,5 @@
 import App from './App.tsx'
-import { persistor, store } from './store/app.store'
+import { persistor, store } from './store/app.store.ts'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 

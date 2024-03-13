@@ -1,4 +1,4 @@
-import { TODO_ACTION_TYPES } from '../constants'
+import { TODO_ACTION_TYPES } from '../constants/index.ts'
 import { ITodo } from '../models/todo.model'
 import { TodoActionTypes } from './todo.actions.types'
 

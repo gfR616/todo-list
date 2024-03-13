@@ -1,5 +1,9 @@
-import { TodoList } from '../TodoList/todoList'
-import { addTodo, removeTodo, toggleTodoStatus } from './../../store/todo/actions'
+import { TodoList } from '../TodoList/todoList.tsx'
+import {
+	addTodo,
+	removeTodo,
+	toggleTodoStatus,
+} from './../../store/todo/actions/index.ts'
 import { ITodo } from './../../store/todo/models/todo.model'
 import { RootState } from './../../store/todo/reducers/'
 import './styles.sass'
