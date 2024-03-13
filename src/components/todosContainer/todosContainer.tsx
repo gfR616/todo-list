@@ -1,15 +1,11 @@
-import { TodoList } from '../TodoList/todoList.tsx'
-import {
-	addTodo,
-	removeTodo,
-	toggleTodoStatus,
-} from './../../store/todo/actions/index.ts'
-import { ITodo } from './../../store/todo/models/todo.model'
-import { RootState } from './../../store/todo/reducers/'
 import './styles.sass'
 import { Card, Col, Row, message } from 'antd'
+import TodoList from 'components/todoList/todoList'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { addTodo, removeTodo, toggleTodoStatus } from 'store/todo/actions'
+import { ITodo } from 'store/todo/models/todo.model'
+import { RootState } from 'store/todo/reducers/'
 
 interface ITodosContainerProps {}
 

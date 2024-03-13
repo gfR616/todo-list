@@ -1,5 +1,6 @@
-import { TodosContainer } from './components/todosContainer/todosContainer.tsx'
+
 import { Store } from '@reduxjs/toolkit'
+import { TodosContainer } from 'components/todosContainer/todosContainer'
 import React from 'react'
 import { Provider } from 'react-redux'
 import { Persistor } from 'redux-persist'

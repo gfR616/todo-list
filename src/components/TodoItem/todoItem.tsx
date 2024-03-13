@@ -1,7 +1,7 @@
-import { ITodo } from '../../store/todo/models/todo.model'
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons'
 import { Button, List, Popconfirm, Switch, Tag, Tooltip } from 'antd'
 import React from 'react'
+import { ITodo } from 'store/todo/models/todo.model'
 
 interface ITodoItemProps {
 	todo: ITodo

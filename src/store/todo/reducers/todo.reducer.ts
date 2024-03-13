@@ -1,5 +1,5 @@
 import { TodoActionTypes } from '../actions/todo.actions.types'
-import { TODO_ACTION_TYPES } from '../constants/index.ts'
+import { TODO_ACTION_TYPES } from '../constants/'
 import { ITodo } from '../models/todo.model'
 import { v1 as uuidV1 } from 'uuid'
 

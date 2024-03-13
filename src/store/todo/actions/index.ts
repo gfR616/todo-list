@@ -1,1 +1,1 @@
-export * from './todo.actions.ts'
+export * from './todo.actions'

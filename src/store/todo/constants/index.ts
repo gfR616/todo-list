@@ -1,1 +1,1 @@
-export * from './todo.constants.ts'
+export * from './todo.constants'

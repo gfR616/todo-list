@@ -1,7 +1,7 @@
-import { ITodo } from '../../store/todo/models/todo.model'
-import TodoItem from '../TodoItem/todoItem.tsx'
 import { List } from 'antd'
+import TodoItem from 'components/todoItem/todoItem'
 import React from 'react'
+import { ITodo } from 'store/todo/models/todo.model'
 
 interface ITodoListProps {
 	todos: ITodo[]

@@ -1,4 +1,4 @@
-import { rootReducer } from './todo/reducers/index.ts'
+import { rootReducer } from './todo/reducers'
 import { configureStore } from '@reduxjs/toolkit'
 import { PersistConfig, persistReducer, persistStore } from 'redux-persist'
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
