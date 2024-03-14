@@ -1,3 +1,4 @@
+import './styles.sass'
 import { PlusCircleFilled } from '@ant-design/icons'
 import { Button, Col, Form, Input, Row } from 'antd'
 import React from 'react'
@@ -24,9 +25,9 @@ export const AddTodo: React.FC<IAddTodoFormProps> = ({ onFormSubmit }) => {
 				<Col xs={24} sm={24} md={17} lg={19} xl={20}>
 					<Form.Item
 						name={'name'}
-						rules={[{ required: true, message: 'This field is required' }]}
+						rules={[{ required: true, message: 'Это поле обязательно!' }]}
 					>
-						<Input placeholder="Что бы вы хотели сделать?" />
+						<Input.TextArea placeholder="Что бы вы хотели сделать?" />
 					</Form.Item>
 				</Col>
 				<Col xs={24} sm={24} md={7} lg={5} xl={4}>
