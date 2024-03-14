@@ -16,7 +16,7 @@ export const TodoList: React.FC<ITodoListProps> = ({
 }) => (
 	<List
 		locale={{
-			emptyText: "There's nothing to do :(",
+			emptyText: 'Здесь пока ничего нет :(',
 		}}
 		dataSource={todos}
 		renderItem={(todo) => (

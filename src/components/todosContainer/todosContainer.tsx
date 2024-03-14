@@ -1,6 +1,6 @@
 import './styles.sass'
-import { Card, Col, Row, message } from 'antd'
-import { AddTodoForm } from 'components/addTodo/addTodo'
+import { Card, Col, Row, Typography, message } from 'antd'
+import { AddTodo } from 'components/addTodo/addTodo'
 import TodoList from 'components/todoList/todoList'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,7 +13,7 @@ interface ITodosContainerProps {}
 
 export const TodosContainer: React.FC<ITodosContainerProps> = () => {
 	const dispatch = useDispatch()
-
+	const { Title, Paragraph } = Typography
 	const todos: ITodo[] = useSelector((state: RootState) => state.todo.todos)
 
 	const handleFormSubmit = (todo: ITodo): void => {
@@ -22,17 +22,17 @@ export const TodosContainer: React.FC<ITodosContainerProps> = () => {
 			id: uuidV1(),
 		}
 		dispatch(addTodo(newTodo))
-		message.success('Todo added!')
+		message.success('Задача добавлена!')
 	}
 
 	const handleRemoveTodo = (todo: ITodo): void => {
 		dispatch(removeTodo(todo))
-		message.warning('Todo removed!')
+		message.warning('Задача удалена!')
 	}
 
 	const handleToggleTodoStatus = (todo: ITodo): void => {
 		dispatch(toggleTodoStatus(todo))
-		message.info('Todo state updated!')
+		message.info('Статус задачи обновлен!')
 	}
 	return (
 		<Row justify="center" align="middle" gutter={[0, 20]} className="todos-container">
@@ -43,10 +43,13 @@ export const TodosContainer: React.FC<ITodosContainerProps> = () => {
 				lg={{ span: 20 }}
 				xl={{ span: 18 }}
 			>
-				{/* <PageHeader
-					title="Add Todo"
-					subTitle="To add a todo, just fill the form below and click in add todo."
-				/> */}
+				<div>
+					<Title level={1}>Добавить задачу</Title>
+					<Paragraph>
+						Чтобы добавить задачу, просто заполните форму ниже и нажмите «Добавить
+						задачу».
+					</Paragraph>
+				</div>
 			</Col>
 
 			<Col
@@ -56,8 +59,8 @@ export const TodosContainer: React.FC<ITodosContainerProps> = () => {
 				lg={{ span: 20 }}
 				xl={{ span: 18 }}
 			>
-				<Card title="Create a new todo">
-					<AddTodoForm onFormSubmit={handleFormSubmit} />
+				<Card title="Добавить новую задачу:">
+					<AddTodo onFormSubmit={handleFormSubmit} />
 				</Card>
 			</Col>
 
@@ -68,7 +71,7 @@ export const TodosContainer: React.FC<ITodosContainerProps> = () => {
 				lg={{ span: 20 }}
 				xl={{ span: 18 }}
 			>
-				<Card title="Todo List">
+				<Card title="Список задач:">
 					<TodoList
 						todos={todos}
 						onTodoRemoval={handleRemoveTodo}

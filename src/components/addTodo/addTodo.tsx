@@ -7,7 +7,7 @@ interface IAddTodoFormProps {
 	onFormSubmit: (todo: ITodo) => void
 }
 
-export const AddTodoForm: React.FC<IAddTodoFormProps> = ({ onFormSubmit }) => {
+export const AddTodo: React.FC<IAddTodoFormProps> = ({ onFormSubmit }) => {
 	const [form] = Form.useForm()
 
 	const onFinish = () => {
@@ -26,13 +26,13 @@ export const AddTodoForm: React.FC<IAddTodoFormProps> = ({ onFormSubmit }) => {
 						name={'name'}
 						rules={[{ required: true, message: 'This field is required' }]}
 					>
-						<Input placeholder="What needs to be done?" />
+						<Input placeholder="Что бы вы хотели сделать?" />
 					</Form.Item>
 				</Col>
 				<Col xs={24} sm={24} md={7} lg={5} xl={4}>
 					<Button type="primary" htmlType="submit" block>
 						<PlusCircleFilled />
-						Add todo
+						Добавить задачу
 					</Button>
 				</Col>
 			</Row>
