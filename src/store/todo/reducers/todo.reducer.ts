@@ -1,38 +1,34 @@
-import { TodoActionTypes } from '../actions/todo.actions.types'
-import { TODO_ACTION_TYPES } from '../constants/'
 import { ITodo } from '../models/todo.model'
-import { v1 as uuidV1 } from 'uuid'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-interface ITodoReducerInterface {
+interface ITodoState {
 	todos: ITodo[]
 }
 
-export const initialState: ITodoReducerInterface = {
+const initialState: ITodoState = {
 	todos: [],
 }
 
-export const todoReducer = (state = initialState, action: TodoActionTypes) => {
-	switch (action?.type) {
-		case TODO_ACTION_TYPES.ADD_TODO_SUCCESS:
-			return Object.assign({}, state, {
-				todos: state.todos.concat({
-					...action.payload,
-					...{
-						id: action.payload.id ?? uuidV1(),
-					},
-				}),
-			})
-		case TODO_ACTION_TYPES.TOGGLE_TODO_STATUS_SUCCESS:
-			return Object.assign({}, state, {
-				todos: state.todos.map((todo: ITodo) =>
-					todo.id === action.payload.id ? { ...todo, completed: !todo.completed } : todo,
-				),
-			})
-		case TODO_ACTION_TYPES.REMOVE_TODO_SUCCESS:
-			return {
-				todos: state.todos.filter((todo: ITodo) => todo.id !== action.payload.id),
+const todosSlice = createSlice({
+	name: 'todos',
+	initialState,
+	reducers: {
+		addTodo: (state, action: PayloadAction<ITodo>) => {
+			state.todos.push(action.payload)
+			console.log(state.todos)
+		},
+		removeTodo: (state, action: PayloadAction<ITodo>) => {
+			state.todos = state.todos.filter((todo) => todo.id !== action.payload.id)
+		},
+		toggleTodoStatus: (state, action: PayloadAction<ITodo>) => {
+			const index = state.todos.findIndex((todo) => todo.id === action.payload.id)
+			if (index !== -1) {
+				state.todos[index].completed = !state.todos[index].completed
 			}
-		default:
-			return state
-	}
-}
+		},
+	},
+})
+
+export const { addTodo, removeTodo, toggleTodoStatus } = todosSlice.actions
+
+export default todosSlice.reducer
