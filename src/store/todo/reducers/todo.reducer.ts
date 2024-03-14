@@ -31,7 +31,6 @@ const todosSlice = createSlice({
 		},
 		setFilterCompleted: (state, action: PayloadAction<boolean>) => {
 			state.filterCompleted = action.payload
-			console.log('New state:', state.filterCompleted)
 		},
 	},
 })
