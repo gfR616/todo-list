@@ -1,25 +1,33 @@
 import './styles.sass'
 import { Card, Col, Row, message } from 'antd'
+import { AddTodoForm } from 'components/addTodo/addTodo'
 import TodoList from 'components/todoList/todoList'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addTodo, removeTodo, toggleTodoStatus } from 'store/todo/actions'
 import { ITodo } from 'store/todo/models/todo.model'
 import { RootState } from 'store/todo/reducers/'
+import { addTodo, removeTodo, toggleTodoStatus } from 'store/todo/reducers/todo.reducer'
+import { v1 as uuidV1 } from 'uuid'
 
 interface ITodosContainerProps {}
 
 export const TodosContainer: React.FC<ITodosContainerProps> = () => {
 	const dispatch = useDispatch()
+
 	const todos: ITodo[] = useSelector((state: RootState) => state.todo.todos)
+
 	const handleFormSubmit = (todo: ITodo): void => {
-		dispatch(addTodo(todo))
+		const newTodo = {
+			...todo,
+			id: uuidV1(),
+		}
+		dispatch(addTodo(newTodo))
 		message.success('Todo added!')
 	}
 
 	const handleRemoveTodo = (todo: ITodo): void => {
 		dispatch(removeTodo(todo))
-		message.warn('Todo removed!')
+		message.warning('Todo removed!')
 	}
 
 	const handleToggleTodoStatus = (todo: ITodo): void => {
@@ -49,7 +57,7 @@ export const TodosContainer: React.FC<ITodosContainerProps> = () => {
 				xl={{ span: 18 }}
 			>
 				<Card title="Create a new todo">
-					{/* <AddTodoForm onFormSubmit={handleFormSubmit} /> */}
+					<AddTodoForm onFormSubmit={handleFormSubmit} />
 				</Card>
 			</Col>
 
