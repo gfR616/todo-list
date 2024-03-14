@@ -1,5 +1,6 @@
+import { RootState } from '.'
 import { ITodo } from '../models/todo.model'
-import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createSelector, createSlice } from '@reduxjs/toolkit'
 
 interface ITodoState {
 	todos: ITodo[]
@@ -37,5 +38,17 @@ const todosSlice = createSlice({
 
 export const { addTodo, removeTodo, toggleTodoStatus, setFilterCompleted } =
 	todosSlice.actions
+
+export const selectFilteredTodos = createSelector(
+	(state: RootState) => state.todo.todos,
+	(state: RootState) => state.todo.filterCompleted,
+	(todos, filterCompleted) => {
+		if (filterCompleted) {
+			return todos.filter((todo) => !todo.completed)
+		} else {
+			return todos
+		}
+	},
+)
 
 export default todosSlice.reducer

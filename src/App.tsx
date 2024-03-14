@@ -13,7 +13,7 @@ interface IAppProps {
 export const App: React.FC<IAppProps> = ({ store, storePersistor }) => {
 	return (
 		<Provider store={store}>
-			<PersistGate loading={<div>Loading...</div>} persistor={storePersistor}>
+			<PersistGate persistor={storePersistor}>
 				<TodosContainer />
 			</PersistGate>
 		</Provider>

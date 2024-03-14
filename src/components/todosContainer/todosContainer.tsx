@@ -1,12 +1,17 @@
 import './styles.sass'
-import { Card, Col, Row, Typography, message } from 'antd'
+import { Card, Col, Row, Switch, Typography, message } from 'antd'
 import { AddTodo } from 'components/addTodo/addTodo'
 import TodoList from 'components/todoList/todoList'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ITodo } from 'store/todo/models/todo.model'
 import { RootState } from 'store/todo/reducers/'
-import { addTodo, removeTodo, toggleTodoStatus } from 'store/todo/reducers/todo.reducer'
+import {
+	addTodo,
+	removeTodo,
+	setFilterCompleted,
+	toggleTodoStatus,
+} from 'store/todo/reducers/todo.reducer'
 import { v1 as uuidV1 } from 'uuid'
 
 interface ITodosContainerProps {}
@@ -34,6 +39,15 @@ export const TodosContainer: React.FC<ITodosContainerProps> = () => {
 		dispatch(toggleTodoStatus(todo))
 		message.info('Статус задачи обновлен!')
 	}
+
+	const handleSwitchChange = (checked: boolean) => {
+		dispatch(setFilterCompleted(checked))
+	}
+
+	const filterCompleted = useSelector(
+		(state: { filterCompleted: boolean }) => state.filterCompleted,
+	)
+
 	return (
 		<Row
 			justify="center"
@@ -76,6 +90,13 @@ export const TodosContainer: React.FC<ITodosContainerProps> = () => {
 				lg={{ span: 20 }}
 				xl={{ span: 18 }}
 			>
+				<Switch
+					checkedChildren="Показать все"
+					unCheckedChildren="Показать невыполненные "
+					checked={filterCompleted}
+					onChange={handleSwitchChange}
+					className="switch"
+				/>
 				<Card title="Список задач:">
 					<TodoList
 						todos={todos}
