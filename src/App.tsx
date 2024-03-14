@@ -1,4 +1,3 @@
-
 import { Store } from '@reduxjs/toolkit'
 import { TodosContainer } from 'components/todosContainer/todosContainer'
 import React from 'react'
