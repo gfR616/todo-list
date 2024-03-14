@@ -1,4 +1,4 @@
-import './styles.sass'
+import './styles.scss'
 import { PlusCircleFilled } from '@ant-design/icons'
 import { Button, Col, Form, Input, Row } from 'antd'
 import React from 'react'

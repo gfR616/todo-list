@@ -1,4 +1,4 @@
-import './styles.sass'
+import './styles.scss'
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons'
 import { Button, List, Popconfirm, Switch, Tag, Tooltip } from 'antd'
 import React from 'react'
