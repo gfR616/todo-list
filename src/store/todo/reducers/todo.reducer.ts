@@ -3,7 +3,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 interface ITodoState {
 	todos: ITodo[]
-	filterCompleted?: boolean
+	filterCompleted: boolean
 }
 
 const initialState: ITodoState = {
@@ -28,12 +28,14 @@ const todosSlice = createSlice({
 				state.todos[index].completed = !state.todos[index].completed
 			}
 		},
-		// setFilterCompleted: (state, action: PayloadAction<ITodo>) => {
-		// 	state.filterCompleted = action.payload
-		// },
+		setFilterCompleted: (state, action: PayloadAction<boolean>) => {
+			state.filterCompleted = action.payload
+			console.log('New state:', state.filterCompleted)
+		},
 	},
 })
 
-export const { addTodo, removeTodo, toggleTodoStatus } = todosSlice.actions
+export const { addTodo, removeTodo, toggleTodoStatus, setFilterCompleted } =
+	todosSlice.actions
 
 export default todosSlice.reducer

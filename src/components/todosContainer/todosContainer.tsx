@@ -35,7 +35,12 @@ export const TodosContainer: React.FC<ITodosContainerProps> = () => {
 		message.info('Статус задачи обновлен!')
 	}
 	return (
-		<Row justify="center" align="middle" gutter={[0, 20]} className="todos-container">
+		<Row
+			justify="center"
+			align="middle"
+			gutter={[0, 20]}
+			className="todos-container borders"
+		>
 			<Col
 				xs={{ span: 23 }}
 				sm={{ span: 23 }}
@@ -59,7 +64,7 @@ export const TodosContainer: React.FC<ITodosContainerProps> = () => {
 				lg={{ span: 20 }}
 				xl={{ span: 18 }}
 			>
-				<Card title="Добавить новую задачу:">
+				<Card title="Добавить новую задачу:" className="todos-container">
 					<AddTodo onFormSubmit={handleFormSubmit} />
 				</Card>
 			</Col>

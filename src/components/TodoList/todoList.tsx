@@ -1,7 +1,9 @@
-import { List } from 'antd'
+import { List, Switch } from 'antd'
 import TodoItem from 'components/todoItem/todoItem'
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { ITodo } from 'store/todo/models/todo.model'
+import { setFilterCompleted } from 'store/todo/reducers/todo.reducer'
 
 interface ITodoListProps {
 	todos: ITodo[]
@@ -14,45 +16,48 @@ export const TodoList: React.FC<ITodoListProps> = ({
 	onTodoRemoval,
 	onTodoToggle,
 }) => {
-	const [pageSize, setPageSize] = useState(5)
+	const dispatch = useDispatch()
+	const filterCompleted = useSelector(
+		(state: { filterCompleted: boolean }) => state.filterCompleted,
+	)
+	const filteredTodos = todos.filter((todo) => (filterCompleted ? !todo.completed : true))
 
+	const handleSwitchChange = (checked: boolean) => {
+		dispatch(setFilterCompleted(checked))
+	}
 	useEffect(() => {
-		const handleResize = () => {
-			const windowWidth = window.innerWidth
-			if (windowWidth <= 600) {
-				setPageSize(3)
-			} else if (windowWidth <= 900) {
-				setPageSize(4)
-			} else {
-				setPageSize(6)
-			}
-		}
-
-		handleResize()
-
-		window.addEventListener('resize', handleResize)
-		return () => window.removeEventListener('resize', handleResize)
-	}, [])
+		console.log('filterCompleted changed:')
+		// Здесь можно выполнить любые действия, которые должны произойти при изменении filterCompleted
+		// Например, можно выполнить запрос к API для обновления списка задач
+	}, [handleSwitchChange])
 
 	return (
-		<List
-			locale={{
-				emptyText: 'Здесь пока ничего нет :(',
-			}}
-			dataSource={todos}
-			renderItem={(todo) => (
-				<TodoItem
-					key={todo.id}
-					todo={todo}
-					onTodoToggle={onTodoToggle}
-					onTodoRemoval={onTodoRemoval}
-				/>
-			)}
-			pagination={{
-				position: 'bottom',
-				pageSize: pageSize, // Используйте состояние pageSize
-			}}
-		/>
+		<div>
+			<Switch
+				checkedChildren="Показать невыполненные"
+				unCheckedChildren="Показать все"
+				checked={filterCompleted}
+				onChange={handleSwitchChange}
+			/>
+			<List
+				locale={{
+					emptyText: 'Здесь пока ничего нет :(',
+				}}
+				dataSource={filteredTodos}
+				renderItem={(todo) => (
+					<TodoItem
+						key={todo.id}
+						todo={todo}
+						onTodoToggle={onTodoToggle}
+						onTodoRemoval={onTodoRemoval}
+					/>
+				)}
+				pagination={{
+					position: 'bottom',
+					pageSize: 5,
+				}}
+			/>
+		</div>
 	)
 }
 
