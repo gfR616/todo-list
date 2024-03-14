@@ -1,5 +1,5 @@
 <h4>Список задач</h5>
-![image](./assets/images/132332263/fc3c6f15-7059-40f0-815d-df3b125613c4.png)
+![Image alt](https://github.comgfR616/todo-list/blob/main/public/Screenshot_2.jpg)
 
 <p>Что реализовано:
 
