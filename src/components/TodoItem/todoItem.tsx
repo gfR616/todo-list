@@ -19,18 +19,6 @@ export const TodoItem: React.FC<ITodoItemProps> = ({
 		<List.Item
 			actions={[
 				<>
-					<Tooltip
-						title={
-							todo.completed ? 'Пометить как незавершенное' : 'Пометить как завершенное'
-						}
-					>
-						<Switch
-							checkedChildren={<CheckOutlined />}
-							unCheckedChildren={<CloseOutlined />}
-							onChange={() => onTodoToggle(todo)}
-							defaultChecked={todo.completed}
-						/>
-					</Tooltip>
 					<Popconfirm
 						title="Вы уверены, что хотите удалить?"
 						onConfirm={() => {
@@ -47,6 +35,19 @@ export const TodoItem: React.FC<ITodoItemProps> = ({
 			key={todo.id}
 		>
 			<div className="todo-item">
+				<Tooltip
+					title={
+						todo.completed ? 'Пометить как незавершенное' : 'Пометить как завершенное'
+					}
+				>
+					<Switch
+						checkedChildren={<CheckOutlined />}
+						unCheckedChildren={<CloseOutlined />}
+						onChange={() => onTodoToggle(todo)}
+						defaultChecked={todo.completed}
+						className="switch"
+					/>
+				</Tooltip>
 				<Tag color={todo.completed ? 'green' : 'orange'} className="todo-tag">
 					{todo.name}
 				</Tag>

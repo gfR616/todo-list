@@ -22,16 +22,21 @@ export const AddTodo: React.FC<IAddTodoFormProps> = ({ onFormSubmit }) => {
 	return (
 		<Form form={form} onFinish={onFinish} layout="horizontal" className="todo-form">
 			<Row gutter={20}>
-				<Col xs={24} sm={24} md={17} lg={19} xl={20}>
+				<Col xs={24} sm={24} md={24} lg={24} xl={24}>
 					<Form.Item
 						name={'name'}
 						rules={[{ required: true, message: 'Это поле обязательно!' }]}
 					>
-						<Input.TextArea placeholder="Что бы вы хотели сделать?" />
+						<Input.TextArea
+							className="text-area"
+							placeholder="Что бы вы хотели сделать?"
+						/>
 					</Form.Item>
 				</Col>
-				<Col xs={24} sm={24} md={7} lg={5} xl={4}>
-					<Button type="primary" htmlType="submit" block>
+			</Row>
+			<Row gutter={10} className="button-aligment">
+				<Col xs={24} sm={24} md={24} lg={24} xl={24}>
+					<Button type="primary" htmlType="submit" className="add-button">
 						<PlusCircleFilled />
 						Добавить задачу
 					</Button>
