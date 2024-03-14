@@ -3,10 +3,12 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 interface ITodoState {
 	todos: ITodo[]
+	filterCompleted?: boolean
 }
 
 const initialState: ITodoState = {
 	todos: [],
+	filterCompleted: false,
 }
 
 const todosSlice = createSlice({
@@ -14,7 +16,7 @@ const todosSlice = createSlice({
 	initialState,
 	reducers: {
 		addTodo: (state, action: PayloadAction<ITodo>) => {
-			state.todos.push(action.payload)
+			state.todos.unshift(action.payload)
 			console.log(state.todos)
 		},
 		removeTodo: (state, action: PayloadAction<ITodo>) => {
@@ -26,6 +28,9 @@ const todosSlice = createSlice({
 				state.todos[index].completed = !state.todos[index].completed
 			}
 		},
+		// setFilterCompleted: (state, action: PayloadAction<ITodo>) => {
+		// 	state.filterCompleted = action.payload
+		// },
 	},
 })
 
